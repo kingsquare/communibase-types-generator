@@ -16,16 +16,28 @@ const pkg = require("../package.json");
 const options: CBTypesGeneratorOptions = yargs
   .version(pkg.version)
   .usage("Usage: $0 <apiKey> [options]")
+  .demandOption("apiKey")
   .option("apiKey", {
-    alias: "a",
+    alias: "k",
     type: "string",
     description: "The communibase api key"
   })
-  .demandOption("apiKey", "Missing communibase api-key")
   .option("output", {
     alias: "o",
     type: "string",
-    description: "Write to output"
+    description: "Write types to output file (if not set is written to stdout)",
+    default: "communibase.d.ts"
+  })
+  .option("outputDir", {
+    alias: "D",
+    type: "string",
+    description: "Write output to directory"
+  })
+  .option("emitSpec", {
+    alias: "S",
+    type: "string",
+    description: "Write specification to output file (only if set)",
+    default: "communibase.spec.json"
   })
   .option("service_url", {
     alias: "u",
@@ -38,16 +50,20 @@ const options: CBTypesGeneratorOptions = yargs
     description: "Run with verbose logging"
   }).argv;
 
-console.log(options);
-
 runner(options)
-  .then(tsString => {
+  .then(({ specification, typesSource }) => {
+    // const outputPath = path.resolve(options.output);
+    // if (options.emitSpec) {
+    //     fs.writeFileSync(path.resolve(outputPath), typesSource);
+    //     console.log(`Created ${options.output}`);
+    // }
     if (options.output) {
-      fs.writeFileSync(path.resolve(options.output), tsString);
-      console.log(`Created ${options.output}`);
+      const outputPath = path.resolve(options.output);
+      fs.writeFileSync(path.resolve(outputPath), typesSource);
+      console.log(`Created ${path.resolve(outputPath)}`);
       process.exit();
     }
-    console.log(tsString);
+    console.log(typesSource);
     process.exit();
   })
   .catch(err => {
