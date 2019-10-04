@@ -21,7 +21,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "communibase-swagger": "file:../../communibase/communibase-swagger",
+    "communibase-swagger": "^0.1.0",
     "dtsgenerator": "^2.3.1",
     "yargs": "^14.0.0"
   },
