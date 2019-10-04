@@ -1,5 +1,5 @@
 {
-  "name": "communibase-types-generator",
+  "name": "@communibase/types-generator",
   "version": "0.0.0-alpha1",
   "repository": "https://github.com:vindaloopoo/communibase-types-generator.git",
   "author": "Kingsquare BV <source@kingsquare.nl>",
@@ -21,7 +21,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "communibase-swagger": "^0.1.0",
+    "communibase-swagger": "file:../../communibase/communibase-swagger",
     "dtsgenerator": "^2.3.1",
     "yargs": "^14.0.0"
   },
