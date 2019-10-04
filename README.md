@@ -1,6 +1,20 @@
 # Communibase administration types generator
 
-## Generate administration type definitions for development
+CLI for generating a `communibase.d.ts` for a specific administration
+
+    yarn add @communibase/types-generator
+
+Then 
+
+    cbtypesgen <api-key> -D @types
+
+Will generate `@types/communibase.d.ts` for the given api-key administration.
+
+types are declared in namespace `Communibase` (i.e. `Communibase.Address`)
+
+## Why
+
+This project makes the following multi-cli solution easier;
 
 1.  Generate the `swagger.json` from the administration
 
