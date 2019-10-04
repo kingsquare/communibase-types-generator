@@ -3,3 +3,6 @@
 node_modules/
 
 dist/
+
+/communibase.d.ts
+/communibase.spec.json
