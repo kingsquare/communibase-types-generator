@@ -10,6 +10,8 @@ Then
 
 Will generate `@types/communibase.d.ts` for the given api-key administration.
 
+types are declared in namespace `Communibase` (i.e. `Communibase.Address`)
+
 ## Why
 
 This project makes the following multi-cli solution easier;
