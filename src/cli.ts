@@ -10,8 +10,11 @@ import runner, { CBTypesGeneratorOptions } from "./index";
 // to a variable if you did this import * as yargs from 'yargs';.
 import yargs = require("yargs");
 
+const pkg = require("../package.json");
+
 // @ts-ignore
 const options: CBTypesGeneratorOptions = yargs
+  .version(pkg.version)
   .usage("Usage: $0 <apiKey> [options]")
   .option("apiKey", {
     alias: "a",
@@ -35,11 +38,13 @@ const options: CBTypesGeneratorOptions = yargs
     description: "Run with verbose logging"
   }).argv;
 
+console.log(options);
+
 runner(options)
   .then(tsString => {
     if (options.output) {
       fs.writeFileSync(path.resolve(options.output), tsString);
-      console.log(`Created ${path}`);
+      console.log(`Created ${options.output}`);
       process.exit();
     }
     console.log(tsString);
@@ -47,4 +52,5 @@ runner(options)
   })
   .catch(err => {
     console.error(err);
+    process.exit(1);
   });
