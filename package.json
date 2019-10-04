@@ -5,7 +5,7 @@
   "author": "Kingsquare BV <source@kingsquare.nl>",
   "license": "MIT",
   "scripts": {
-    "build": "mkdir dist 2>/dev/null; tsc src/cli.ts --outDir dist/",
+    "build": "mkdir dist 2>/dev/null; tsc",
     "prepublish": "yarn run build"
   },
   "main": "dist/index.js",
@@ -15,17 +15,18 @@
     "dist/index.js"
   ],
   "bin": {
-    "cb-types-gen": "./dist/cli.js"
+    "cbtypesgen": "./dist/cli.js"
   },
   "engines": {
     "node": ">=8"
   },
   "dependencies": {
-    "communibase-swagger": "file:../communibase-swagger",
+    "communibase-swagger": "file:../../communibase/communibase-swagger",
     "dtsgenerator": "^2.3.1",
     "yargs": "^14.0.0"
   },
   "devDependencies": {
+    "@types/node": "^12.7.11",
     "@types/yargs": "^13.0.3",
     "eslint-config-kingsquare": "https://github.com/kingsquare/eslint-config-kingsquare.git#2464819b1f0090359da5570bcf2170a3eb3fadbd",
     "typescript": "^3.6.3"

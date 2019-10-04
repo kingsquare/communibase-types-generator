@@ -1,15 +1,22 @@
-import generator from "communibase-swagger";
+// @ts-ignore
+import generator, { ICBSwaggerGeneratorOptions } from "communibase-swagger";
 import dtsGenerator from "dtsgenerator";
 
-export default async options => {
-  const swagger = await generator({
-    apiKey: options.apiKey,
-    serviceUrl: options.serviceUrl
-  });
+export interface CBTypesGeneratorOptions extends ICBSwaggerGeneratorOptions {
+  apiKey: string;
+  output?: string;
+  serviceUrl?: string;
+  verbose?: boolean;
+}
 
-  const result = await dtsGenerator({
-    contents: [JSON.stringify(swagger)]
+export default async (options: CBTypesGeneratorOptions) =>
+  await dtsGenerator({
+    contents: [
+      JSON.stringify(
+        await generator({
+          apiKey: options.apiKey,
+          serviceUrl: options.serviceUrl
+        })
+      )
+    ]
   });
-
-  return result;
-};

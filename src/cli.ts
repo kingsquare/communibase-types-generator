@@ -1,26 +1,24 @@
-import * as yargs from "yargs";
 import * as fs from "fs";
 import * as path from "path";
+import runner, { CBTypesGeneratorOptions } from "./index";
 
-import runner from "./index";
-import { Argv } from "yargs";
+// do this to remove the deprecation warning;
+//
+// "In future major releases of yargs, "parsed" will be a private field. Use the return value of ".parse()" or ".argv" instead"
+//
+// TypeScript was triggering this warning, because it would copy all of the module properties
+// to a variable if you did this import * as yargs from 'yargs';.
+import yargs = require("yargs");
 
-// Argv<{ output: string; } & { service_url: string; } & { verbose: boolean; }>
-
-interface CBTypesGenerator {
-  apiKey: string;
-  output?: string;
-  service_url?: string;
-  verbose?: boolean;
-}
-
-const options: Argv<CBTypesGenerator> = yargs
+// @ts-ignore
+const options: CBTypesGeneratorOptions = yargs
   .usage("Usage: $0 <apiKey> [options]")
   .option("apiKey", {
     alias: "a",
     type: "string",
     description: "The communibase api key"
   })
+  .demandOption("apiKey", "Missing communibase api-key")
   .option("output", {
     alias: "o",
     type: "string",
@@ -35,16 +33,16 @@ const options: Argv<CBTypesGenerator> = yargs
     alias: "v",
     type: "boolean",
     description: "Run with verbose logging"
-  });
+  }).argv;
 
 runner(options)
   .then(tsString => {
-    if (!options.output) {
-      process.stdout.write(tsString);
+    if (options.output) {
+      fs.writeFileSync(path.resolve(options.output), tsString);
+      console.log(`Created ${path}`);
       process.exit();
     }
-    fs.writeFileSync(path.resolve(options.output), tsString);
-    process.stdout.write(tsString);
+    console.log(tsString);
     process.exit();
   })
   .catch(err => {
