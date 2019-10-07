@@ -18,6 +18,7 @@ export default async (options: CBTypesGeneratorOptions) => {
     serviceUrl: options.serviceUrl
   });
   return {
+    // crappy immutable fix as dtsGenerator changes the object
     specification: JSON.parse(JSON.stringify(swagger)),
     typesSource: await dtsGenerator({
       namespaceName: "Communibase",
