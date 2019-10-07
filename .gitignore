@@ -7,4 +7,5 @@ dist/
 # test outputs
 /communibase.d.ts
 /communibase.spec.json
+/swagger.json
 _output/

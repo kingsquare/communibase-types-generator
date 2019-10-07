@@ -53,8 +53,12 @@ const options: CBTypesGeneratorOptions = yargs
 runner(options)
   .then(({ specification, typesSource }) => {
     // const outputPath = path.resolve(options.output);
+    // fs.writeFileSync("swagger.json", JSON.stringify(specification, null, 2), {
+    //   encoding: "utf8",
+    //   flag: "w"
+    // });
     // if (options.emitSpec) {
-    //     fs.writeFileSync(path.resolve(outputPath), typesSource);
+    //     fs.writeFileSync(path.resolve(outputPath), JSON.stringify(specification, null, 2));
     //     console.log(`Created ${options.output}`);
     // }
     if (options.output) {
