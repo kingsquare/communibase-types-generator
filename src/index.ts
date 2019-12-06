@@ -1,4 +1,3 @@
-// @ts-ignore
 import generator, { ICBSwaggerGeneratorOptions } from "communibase-swagger";
 import dtsGenerator from "dtsgenerator";
 

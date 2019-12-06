@@ -1,12 +1,14 @@
 # Communibase administration types generator
 
-CLI for generating a `communibase.d.ts` for a specific administration
+CLI for generating a `communibase.d.ts` for a specific administration.
 
-    yarn add @communibase/types-generator
+Quick and easy:
 
-Then 
+```
 
-    cbtypesgen <api-key> -D @types
+npx communibase-types-generator -D @types -k <api-key>
+
+```
 
 Will generate `@types/communibase.d.ts` for the given api-key administration.
 
