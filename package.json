@@ -1,6 +1,6 @@
 {
-  "name": "@communibase/types-generator",
-  "version": "0.0.1",
+  "name": "communibase-types-generator",
+  "version": "0.0.2",
   "repository": "https://github.com:vindaloopoo/communibase-types-generator.git",
   "author": "Kingsquare BV <source@kingsquare.nl>",
   "license": "MIT",
