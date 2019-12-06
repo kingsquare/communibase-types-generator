@@ -1,6 +1,6 @@
 {
   "name": "communibase-types-generator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "https://github.com:vindaloopoo/communibase-types-generator.git",
   "author": "Kingsquare BV <source@kingsquare.nl>",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "dist/index.js"
   ],
   "bin": {
-    "cbtypesgen": "./dist/cli.js"
+    "cbtypesgen": "dist/cli.js"
   },
   "engines": {
     "node": ">=8"
